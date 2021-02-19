@@ -287,3 +287,6 @@ ExpressionDescriptor.GetDescription("23 12 * JAN-FEB * 2013-2014");
 
 ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015");
 > "At 12:23 PM, January through March, 2013 through 2015"
+
+In order to meet the business requirements, the branch modifies the syntax errors of Chinese translation
+![image](https://github.com/oncefrom/cron-expression-descriptor/blob/master/inputResult.png)
