@@ -147,31 +147,43 @@ namespace CronExpressionDescriptor
     {
       string description;
 
-      try
-      {
-        string timeSegment = GetTimeOfDayDescription();
-        string dayOfMonthDesc = GetDayOfMonthDescription();
-        string monthDesc = GetMonthDescription();
-        string dayOfWeekDesc = GetDayOfWeekDescription();
-        string yearDesc = GetYearDescription();
+            try
+            {
+                string timeSegment = GetTimeOfDayDescription();
+                string dayOfMonthDesc = GetDayOfMonthDescription();
+                string monthDesc = GetMonthDescription();
+                string dayOfWeekDesc = GetDayOfWeekDescription();
+                string yearDesc = GetYearDescription();
 
-        description = string.Format("{0}{1}{2}{3}{4}",
-               timeSegment,
-               dayOfMonthDesc,
-               dayOfWeekDesc,
-               monthDesc,
-               yearDesc);
+                if (m_culture.Name.ToLower() == "zh-hans")
+                {
+                    if (monthDesc.Length > 0 && dayOfMonthDesc.Length > 0)
+                        dayOfMonthDesc = dayOfMonthDesc.Replace("每月的", "的");
+                    description = string.Format("{0}{1}{2}{3}{4}",
+                            yearDesc,
+                            monthDesc,
+                            dayOfMonthDesc,
+                            dayOfWeekDesc,
+                            timeSegment);
+                }
+                else
+                    description = string.Format("{0}{1}{2}{3}{4}",
+                            timeSegment,
+                            dayOfMonthDesc,
+                            dayOfWeekDesc,
+                            monthDesc,
+                            yearDesc);
 
-        description = TransformVerbosity(description, m_options.Verbose);
-      }
-      catch (Exception ex)
-      {
-        description = GetString("AnErrorOccuredWhenGeneratingTheExpressionD");
-        if (m_options.ThrowExceptionOnParseError)
-        {
-          throw new FormatException(description, ex);
-        }
-      }
+                description = TransformVerbosity(description, m_options.Verbose); 
+            }
+            catch (Exception ex)
+            {
+                description = GetString("AnErrorOccuredWhenGeneratingTheExpressionD");
+                if (m_options.ThrowExceptionOnParseError)
+                {
+                    throw new FormatException(description, ex);
+                }
+            }
 
 
       return description;
@@ -236,21 +248,36 @@ namespace CronExpressionDescriptor
         string minutesDescription = GetMinutesDescription();
         string hoursDescription = GetHoursDescription();
 
-        description.Append(secondsDescription);
+                if (m_culture.Name.ToLower() == "zh-hans")
+                {
+                    description.Append(hoursDescription);
 
-        if (description.Length > 0 && minutesDescription.Length > 0)
-        {
-          description.Append(", ");
-        }
+                    if (description.Length > 0 && hoursDescription.Length > 0)
+                    {
+                        minutesDescription = minutesDescription.Replace("在每小时的", "的");
+                    }
 
-        description.Append(minutesDescription);
+                    description.Append(minutesDescription);
+                    description.Append(secondsDescription);
+                }
+                else
+                {
+                    description.Append(secondsDescription);
 
-        if (description.Length > 0 && hourExpression.Length > 0)
-        {
-          description.Append(", ");
-        }
+                    if (description.Length > 0 && minutesDescription.Length > 0)
+                    {
+                        description.Append(", ");
+                    }
 
-        description.Append(hoursDescription);
+                    description.Append(minutesDescription);
+
+                    if (description.Length > 0 && hourExpression.Length > 0)
+                    {
+                        description.Append(", ");
+                    }
+
+                    description.Append(hoursDescription);
+                }
       }
 
 
@@ -723,10 +750,22 @@ namespace CronExpressionDescriptor
     {
       if (!useVerboseFormat)
       {
-        description = description.Replace(GetString("ComaEveryMinute"), string.Empty);
-        description = description.Replace(GetString("ComaEveryHour"), string.Empty);
-        description = description.Replace(GetString("ComaEveryDay"), string.Empty);
-        description = Regex.Replace(description, @"\, ?$", "");
+        if (m_culture.Name.ToLower() == "zh-hans")
+        {
+            if(description.Contains(GetString("ComaEveryMinute")) && !description.Contains(GetString("ComaEveryMinute")+"的"))
+                description = description.Replace(GetString("ComaEveryMinute"), string.Empty);
+            if (description.Contains(GetString("ComaEveryHour")) && !description.Contains(GetString("ComaEveryHour") + "的"))
+                description = description.Replace(GetString("ComaEveryHour"), string.Empty);
+            if (description.Contains(GetString("ComaEveryDay")) && !description.Contains(GetString("ComaEveryDay") + "的"))
+                description = description.Replace(GetString("ComaEveryDay"), string.Empty);
+            description = Regex.Replace(description, @"\, ?$", "");
+        }else
+        {
+            description = description.Replace(GetString("ComaEveryMinute"), string.Empty);
+            description = description.Replace(GetString("ComaEveryHour"), string.Empty);
+            description = description.Replace(GetString("ComaEveryDay"), string.Empty);
+            description = Regex.Replace(description, @"\, ?$", "");
+        }
       }
 
       return description;
