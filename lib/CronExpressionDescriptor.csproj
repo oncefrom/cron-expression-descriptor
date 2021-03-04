@@ -8,14 +8,14 @@
   <PropertyGroup>
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile>CronExpressionDescriptor.snk</AssemblyOriginatorKeyFile>
-    <Product>CronExpressionDescriptor</Product>
-    <Version>2.16.0</Version>
+    <Product>CronExpressionDescriptor-zh-hans</Product>
+    <Version>2.16.1</Version>
     <PackageReleaseNotes>Fix detection of 6 part expressions with year specified as *</PackageReleaseNotes>
-    <Authors>Brady Holt</Authors>
-    <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Persian (Farsi), Polish, Romanian Italian, Swedish, Slovenian, Danish, Finnish and Japanese.</Description>
+    <Authors>Brady Holt,oncefrom</Authors>
+    <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Persian (Farsi), Polish, Romanian Italian, Swedish, Slovenian, Danish, Finnish and Japanese. 此版本仅修改了中文输出翻译表达式的语法问题</Description>
     <PackageLicenseUrl>https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/bradymholt/cron-expression-descriptor</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bradymholt/cron-expression-descriptor</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/oncefrom/cron-expression-descriptor</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/oncefrom/cron-expression-descriptor</RepositoryUrl>
     <PackageTags>cron, schedule, quartz, quartz.net, cron expression</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/bradymholt/cron-expression-descriptor/master/demo/wwwroot/favicon-64x64.png</PackageIconUrl>
   </PropertyGroup>

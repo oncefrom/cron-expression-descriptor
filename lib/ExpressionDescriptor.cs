@@ -157,8 +157,8 @@ namespace CronExpressionDescriptor
 
                 if (m_culture.Name.ToLower() == "zh-hans")
                 {
-                    if (monthDesc.Length > 0 && dayOfMonthDesc.Length > 0)
-                        dayOfMonthDesc = dayOfMonthDesc.Replace("每月的", "的");
+                    if (monthDesc.Length > 0 && dayOfMonthDesc.Length > 0) 
+                        dayOfMonthDesc = dayOfMonthDesc.Replace("每月的", "的"); 
                     description = string.Format("{0}{1}{2}{3}{4}",
                             yearDesc,
                             monthDesc,
@@ -759,7 +759,10 @@ namespace CronExpressionDescriptor
             if (description.Contains(GetString("ComaEveryDay")) && !description.Contains(GetString("ComaEveryDay") + "的"))
                 description = description.Replace(GetString("ComaEveryDay"), string.Empty);
             description = Regex.Replace(description, @"\, ?$", "");
-        }else
+            description = description.Replace("个月每个月", "个月");
+                    description = description.Replace("星期", "周");
+                }
+                else
         {
             description = description.Replace(GetString("ComaEveryMinute"), string.Empty);
             description = description.Replace(GetString("ComaEveryHour"), string.Empty);
