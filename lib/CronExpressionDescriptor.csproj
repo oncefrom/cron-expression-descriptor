@@ -9,7 +9,7 @@
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile>CronExpressionDescriptor.snk</AssemblyOriginatorKeyFile>
     <Product>CronExpressionDescriptor-zh-hans</Product>
-    <Version>2.16.1</Version>
+    <Version>2.16.2</Version>
     <PackageReleaseNotes>Fix detection of 6 part expressions with year specified as *</PackageReleaseNotes>
     <Authors>Brady Holt,oncefrom</Authors>
     <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Persian (Farsi), Polish, Romanian Italian, Swedish, Slovenian, Danish, Finnish and Japanese. 此版本仅修改了中文输出翻译表达式的语法问题</Description>

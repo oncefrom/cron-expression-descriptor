@@ -133,8 +133,8 @@ namespace CronExpressionDescriptor
         }
       }
 
-      // Uppercase the first letter
-      description = string.Concat(m_culture.TextInfo.ToUpper(description[0]), description.Substring(1));
+            // Uppercase the first letter 
+      description = description.Length==0 ? GetString("ComaEveryMinute") : string.Concat(m_culture.TextInfo.ToUpper(description[0]), description.Substring(1));
 
       return description;
     }
